@@ -67,7 +67,7 @@ final class AnnouncementTest extends TestCase {
 
 		$html = self::render_header();
 
-		$this->assertMatchesRegularExpression( '#<p class="has-text-align-center">Closed <em>Monday</em></p>#', $html );
+		$this->assertMatchesRegularExpression( '#<p class="has-text-align-center( wp-block-paragraph)?">Closed <em>Monday</em></p>#', $html );
 	}
 
 	public function test_header_bar_is_removed_when_announcement_is_empty(): void {

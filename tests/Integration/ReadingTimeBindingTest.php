@@ -33,13 +33,13 @@ final class ReadingTimeBindingTest extends TestCase {
 		$words         = ReadingTime::WORDS_PER_MINUTE * 2 + 1;
 		$this->post_id = self::create_post( '<!-- wp:paragraph --><p>' . str_repeat( 'word ', $words ) . '</p><!-- /wp:paragraph -->' );
 
-		$this->assertSame( '<p>3 min read</p>', self::render_bound_paragraph( $this->post_id ) );
+		$this->assertMatchesRegularExpression( self::paragraph( '3 min read' ), self::render_bound_paragraph( $this->post_id ) );
 	}
 
 	public function test_markup_in_post_content_is_not_counted_or_echoed(): void {
 		$this->post_id = self::create_post( '<p data-x="<script>">short</p>[gallery ids="1,2"]' );
 
-		$this->assertSame( '<p>1 min read</p>', self::render_bound_paragraph( $this->post_id ) );
+		$this->assertMatchesRegularExpression( self::paragraph( '1 min read' ), self::render_bound_paragraph( $this->post_id ) );
 	}
 
 	/**
@@ -67,5 +67,15 @@ final class ReadingTimeBindingTest extends TestCase {
 		$parsed = parse_blocks( '<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"block-starter/reading-time"}}}} --><p></p><!-- /wp:paragraph -->' )[0];
 
 		return trim( ( new WP_Block( $parsed, array( 'postId' => $post_id ) ) )->render() );
+	}
+
+	/**
+	 * Pattern for a rendered paragraph holding exactly $text. Newer WordPress
+	 * adds the wp-block-paragraph class; 6.7 doesn't.
+	 *
+	 * @param string $text Expected paragraph text.
+	 */
+	private static function paragraph( string $text ): string {
+		return '#^<p( class="wp-block-paragraph")?>' . preg_quote( $text, '#' ) . '</p>$#';
 	}
 }
