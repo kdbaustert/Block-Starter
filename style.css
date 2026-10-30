@@ -1,0 +1,25 @@
+/*
+Theme Name: Block Starter
+Theme URI: https://example.com/block-starter
+Author: Kenny B
+Description: A starter block theme built around theme.json, with patterns, template parts and style variations.
+Requires at least: 6.7
+Tested up to: 7.1
+Requires PHP: 8.1
+Version: 0.1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: block-starter
+Tags: full-site-editing, block-patterns, block-styles, style-variations, blog, one-column, wide-blocks
+*/
+
+/* Most styling lives in theme.json. Only rules it can't express go here. */
+
+:where(.wp-site-blocks) :focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 3px;
+}
+
+.wp-block-post-excerpt__more-link {
+	font-weight: 600;
+}
