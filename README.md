@@ -7,7 +7,7 @@ The PHP that remains sits in `src/` under the `BlockStarter` namespace, loaded b
 ## Requirements
 
 - WordPress 6.7 or later
-- PHP 8.1 or later
+- PHP 8.2 or later
 - Composer
 
 ## Install
@@ -119,7 +119,7 @@ With wp-env running, `composer test:wp-env` runs the suite inside its tests cont
 `.github/workflows/ci.yml` runs on pushes to `main` and on pull requests:
 
 - PHPCS, with violations shown inline on the pull request
-- PHPUnit on PHP 8.1 with WordPress 6.7, and on PHP 8.3 with the latest WordPress. The integration step uses `--fail-on-skipped`, so it can't pass without WordPress loading.
+- PHPUnit on PHP 8.2 with WordPress 6.7, and on PHP 8.5 with the latest WordPress. The integration step uses `--fail-on-skipped`, so it can't pass without WordPress loading.
 
 ## License
 
