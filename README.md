@@ -14,7 +14,7 @@ The PHP that remains sits in `src/` under the `BlockStarter` namespace, loaded b
 
 ```sh
 cd wp-content/themes
-git clone <repo-url> block-starter
+git clone git@github.com:kdbaustert/Block-Starter.git block-starter
 cd block-starter
 composer install --no-dev
 ```
